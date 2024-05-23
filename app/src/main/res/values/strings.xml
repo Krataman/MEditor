@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PGO</string>
+    <string name="app_name">Video Trimmer</string>
     <string name="film_video">Film video</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

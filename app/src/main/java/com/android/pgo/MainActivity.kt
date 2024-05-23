@@ -2,23 +2,43 @@ package com.android.pgo
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.gowtham.library.utils.LogMessage
+import com.gowtham.library.utils.TrimVideo
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_VIDEO_CAPTURE = 1 //static value
     private val REQUEST_VIDEO_PERMISSIONS = 2 //static value
     private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
+    private lateinit var videoUri: Uri
+
+    //region value startForResult
+    val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK &&
+            result.data != null) {
+            val uri:Uri = Uri.parse(TrimVideo.getTrimmedVideoPath(result.data))
+            Log.d(ContentValues.TAG, "Trimmed path:: " + uri)
+        }else
+            LogMessage.v("videoTrimResultLauncher data is null!");
+    }
+    //endregion
 
     //region onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +47,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         initButton()
-
-        val buttonRecordVideo: Button = findViewById(R.id.startFilmingVideoButton)
-        buttonRecordVideo.setOnClickListener {
-            if (hasPermissions(APPLICATION_PERMISSIONS)) {
-                takeVideoIntent()
-            } else {
-                requestVideoPermissions()
-            }
-        }
 
     }
     //endregion
@@ -46,7 +57,11 @@ class MainActivity : AppCompatActivity() {
     private fun initButton(){
         val filmVideoButton:Button = findViewById(R.id.startFilmingVideoButton)
         filmVideoButton.setOnClickListener(View.OnClickListener {
-            takeVideoIntent()
+            if (hasPermissions(APPLICATION_PERMISSIONS)) {
+                takeVideoIntent()
+            } else {
+                requestVideoPermissions()
+            }
         })
     }
     //endregion
@@ -112,15 +127,17 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-
-            val videoUri: Uri? = data?.data
-            videoUri?.let {
-                val intent = Intent(this, TrimVideoActivity::class.java).apply {
-                    putExtra("VIDEO_URI", it.toString())
-                }
-                startActivity(intent)
-            }
+            videoUri = data?.data!!
+            openTrimActivity()
         }
+    }
+    //endregion
+    //region openTrimAcitivity
+    private fun openTrimActivity(){
+        TrimVideo.activity(videoUri.toString()).
+        setHideSeekBar(false).
+        setAccurateCut(true).
+        start(this,startForResult)
     }
     //endregion
 }
