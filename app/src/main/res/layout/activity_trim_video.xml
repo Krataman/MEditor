@@ -5,6 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TrimVideoActivity">
+    tools:context=".TrimVideoActivity"
+    android:background="@drawable/background_fade"
+    android:orientation="vertical">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="0dp">
+
+    </VideoView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
