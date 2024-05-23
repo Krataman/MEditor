@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">Video Trimmer</string>
-    <string name="film_video">Film video</string>
+    <string name="trim_video">Trim Video</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="view_gallery">View gallery</string>
+    <string name="from_gallery">From gallery</string>
+    <string name="take_video">Take video</string>
 </resources>

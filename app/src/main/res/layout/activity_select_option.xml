@@ -5,56 +5,67 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background_fade">
+    tools:context=".SelectOptionActivity"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/selectOptionToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_fade"
+        android:theme="@style/ToolbarTheme">
+
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/trimVideoButton"
+            android:id="@+id/takeVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:orientation="vertical"
-            android:text="@string/trim_video"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:icon="@drawable/baseline_content_cut_24"
-            app:iconGravity="textEnd"
-            app:iconSize="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/take_video"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_gravity="center"
-            app:iconTint="@color/white"/>
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/viewGalleryButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:orientation="vertical"
-            android:text="@string/view_gallery"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:icon="@drawable/baseline_collections_24"
+            app:icon="@drawable/baseline_camera_24"
             app:iconGravity="textEnd"
             app:iconSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trimVideoButton"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
             app:iconTint="@color/white">
 
         </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/videoFromGalleryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
+            android:textStyle="bold"
+            android:text="@string/from_gallery"
+            app:icon="@drawable/baseline_add_photo_alternate_24"
+            app:iconGravity="textEnd"
+            app:iconSize="20dp"
+            android:textColor="@color/white"
+            app:iconTint="@color/white">
+
+        </com.google.android.material.button.MaterialButton>
+
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

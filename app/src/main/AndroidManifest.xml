@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- User permissions -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -22,8 +21,9 @@
         android:theme="@style/Theme.PGO"
         tools:targetApi="31">
         <activity
-            android:name=".TrimVideoActivity"
-            android:exported="false" />
+            android:name=".SelectOptionActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
