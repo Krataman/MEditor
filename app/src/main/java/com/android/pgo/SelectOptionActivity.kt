@@ -26,11 +26,14 @@ import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 
 class SelectOptionActivity : AppCompatActivity() {
+    companion object {
+        private const val REQUEST_VIDEO_CAPTURE = 1 //static value
+        private const val REQUEST_VIDEO_PERMISSIONS = 2 //static value
+        private const val REQUEST_VIDEO_PICK = 1
+        private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
+        private lateinit var videoUri: Uri
 
-    private val REQUEST_VIDEO_CAPTURE = 1 //static value
-    private val REQUEST_VIDEO_PERMISSIONS = 2 //static value
-    private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
-    private lateinit var videoUri: Uri
+    }
 
     //region value startForResult
     val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -55,7 +58,7 @@ class SelectOptionActivity : AppCompatActivity() {
 
     //region initialize button
     /**
-     * Method that initializes the button to take a video
+     * Method that initializes the buttons to take a video
      */
     private fun initButton(){
         val filmVideoButton: Button = findViewById(R.id.takeVideoButton)
@@ -66,9 +69,16 @@ class SelectOptionActivity : AppCompatActivity() {
                 requestVideoPermissions()
             }
         })
+
+        val pickVideoButton: Button = findViewById(R.id.videoFromGalleryButton)
+        pickVideoButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "video/*"
+            startActivityForResult(intent, REQUEST_VIDEO_PICK)
+        })
+
     }
     //endregion
-
     //region request permission
     /**
      * Method that requests the video permissions from the user
@@ -144,6 +154,4 @@ class SelectOptionActivity : AppCompatActivity() {
         start(this,startForResult)
     }
     //endregion
-
-
 }
