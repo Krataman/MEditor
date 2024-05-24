@@ -1,6 +1,7 @@
 package com.android.pgo.galleryHandling
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,22 +11,27 @@ import com.android.pgo.DataHolder
 import com.android.pgo.R
 
 class GalleryActivity : AppCompatActivity() {
+    private lateinit var videoAdapter: VideoAdapter
+    private val videoPaths = ArrayList<String>()
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_gallery)
 
-        lateinit var videoAdapter: VideoAdapter
-        val videoPaths = mutableListOf<String>()
-
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+        // Inicializace RecyclerView a Adapter
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(this, 3)
 
-        videoAdapter = VideoAdapter(videoPaths)
+        videoAdapter = VideoAdapter(videoPaths) { videoPath ->
+            val intent = Intent(this, FullScreenVideoActivity::class.java)
+            intent.putExtra("VIDEO_PATH", videoPath)
+            startActivity(intent)
+        }
         recyclerView.adapter = videoAdapter
 
-        // ziska data ze singleton tridy
+        //pridani cest do SINGLETON tridy Data Holder
         DataHolder.videoPaths?.let {
             videoPaths.addAll(it)
             videoAdapter.notifyDataSetChanged()
