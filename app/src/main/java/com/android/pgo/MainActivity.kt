@@ -2,12 +2,10 @@ package com.android.pgo
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.android.pgo.galleryHandling.GalleryActivity
 
 class MainActivity : AppCompatActivity() {
     //region onCreate
@@ -30,6 +28,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         })
         //endregion
+
+        button1.setOnClickListener(View.OnClickListener {
+            val i:Intent = intent
+            val intent = Intent(this, GalleryActivity::class.java)
+            intent.putStringArrayListExtra("TRIMMED_VIDEO_PATHS",
+                i.getStringArrayListExtra("TRIMMED_VIDEO_PATHS")?.let { it1 -> ArrayList(it1) })
+            startActivity(intent)
+        })
 
     }
 

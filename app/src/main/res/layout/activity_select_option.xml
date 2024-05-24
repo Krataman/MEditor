@@ -20,32 +20,35 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+
+
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/takeVideoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:backgroundTint="@color/blue"
             android:text="@string/take_video"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:icon="@drawable/baseline_camera_24"
             app:iconGravity="textEnd"
             app:iconSize="20dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            app:iconTint="@color/white">
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </com.google.android.material.button.MaterialButton>
 
@@ -54,18 +57,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:textStyle="bold"
             android:text="@string/from_gallery"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:icon="@drawable/baseline_add_photo_alternate_24"
             app:iconGravity="textEnd"
             app:iconSize="20dp"
-            android:textColor="@color/white"
             app:iconTint="@color/white">
 
         </com.google.android.material.button.MaterialButton>
 
+
     </LinearLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

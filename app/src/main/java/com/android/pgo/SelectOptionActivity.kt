@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,6 +33,7 @@ class SelectOptionActivity : AppCompatActivity() {
         private const val REQUEST_VIDEO_PICK = 1
         private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
         private lateinit var videoUri: Uri
+        private val trimmedVideoPaths = mutableListOf<String>()
 
     }
 
@@ -42,6 +44,7 @@ class SelectOptionActivity : AppCompatActivity() {
 
             val uri: Uri = Uri.parse(TrimVideo.getTrimmedVideoPath(result.data))
             Log.d(ContentValues.TAG, "Trimmed video path:: " + uri)
+            saveTrimmedVideoPath(uri.toString()) // ulozi lokaci trimnuteho videa to listu Stringu
 
         }else
             LogMessage.v("Video trimmer data is null!");
@@ -61,6 +64,7 @@ class SelectOptionActivity : AppCompatActivity() {
      * Method that initializes the buttons to take a video
      */
     private fun initButton(){
+        //region filmVideo
         val filmVideoButton: Button = findViewById(R.id.takeVideoButton)
         filmVideoButton.setOnClickListener(View.OnClickListener {
             if (hasPermissions(APPLICATION_PERMISSIONS)) {
@@ -69,14 +73,15 @@ class SelectOptionActivity : AppCompatActivity() {
                 requestVideoPermissions()
             }
         })
-
+        //endregion
+        //region pickVideo
         val pickVideoButton: Button = findViewById(R.id.videoFromGalleryButton)
         pickVideoButton.setOnClickListener(View.OnClickListener {
             val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "video/*"
+            intent.type = "video/*" // typ souboru ktery uzivatel muze vybrat
             startActivityForResult(intent, REQUEST_VIDEO_PICK)
         })
-
+        //endregion
     }
     //endregion
     //region request permission
@@ -154,4 +159,21 @@ class SelectOptionActivity : AppCompatActivity() {
         start(this,startForResult)
     }
     //endregion
+    //region playTrimmed video
+    private fun startMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putStringArrayListExtra("TRIMMED_VIDEO_PATHS", ArrayList(trimmedVideoPaths))
+        startActivity(intent)
+        finish()
+    }
+    //endregion
+
+    private fun saveTrimmedVideoPath(videoPath: String) {
+        trimmedVideoPaths.add(videoPath)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        startMainActivity()
+    }
 }
