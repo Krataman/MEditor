@@ -28,13 +28,14 @@
             android:textStyle="bold"
             app:icon="@drawable/baseline_content_cut_24"
             app:iconGravity="textEnd"
-            app:iconSize="20dp"
+            app:iconSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_gravity="center"
-            app:iconTint="@color/white"/>
+            app:iconTint="@color/white"
+            android:textSize="20sp"/>
 
 
         <com.google.android.material.button.MaterialButton
@@ -48,13 +49,28 @@
             android:textStyle="bold"
             app:icon="@drawable/baseline_collections_24"
             app:iconGravity="textEnd"
-            app:iconSize="20dp"
+            app:iconSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/trimVideoButton"
-            app:iconTint="@color/white">
+            app:iconTint="@color/white"
+            android:textSize="20sp">
 
         </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:textStyle="bold"
+            android:text="DEV"
+            android:id="@+id/dev">
+
+        </com.google.android.material.button.MaterialButton>
+
+
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

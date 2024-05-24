@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.pgo.DataHolder
 import com.android.pgo.R
 
 class GalleryActivity : AppCompatActivity() {
@@ -24,7 +25,8 @@ class GalleryActivity : AppCompatActivity() {
         videoAdapter = VideoAdapter(videoPaths)
         recyclerView.adapter = videoAdapter
 
-        intent.getStringArrayListExtra("TRIMMED_VIDEO_PATHS")?.let {
+        // ziska data ze singleton tridy
+        DataHolder.videoPaths?.let {
             videoPaths.addAll(it)
             videoAdapter.notifyDataSetChanged()
         }

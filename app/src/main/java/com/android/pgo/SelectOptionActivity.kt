@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -45,11 +46,13 @@ class SelectOptionActivity : AppCompatActivity() {
             val uri: Uri = Uri.parse(TrimVideo.getTrimmedVideoPath(result.data))
             Log.d(ContentValues.TAG, "Trimmed video path:: " + uri)
             saveTrimmedVideoPath(uri.toString()) // ulozi lokaci trimnuteho videa to listu Stringu
+            Log.d(TAG, "$uri")
 
         }else
             LogMessage.v("Video trimmer data is null!");
     }
     //endregion
+    //region onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,7 +60,7 @@ class SelectOptionActivity : AppCompatActivity() {
 
         initButton()
     }
-
+    //endregion
 
     //region initialize button
     /**
@@ -159,21 +162,22 @@ class SelectOptionActivity : AppCompatActivity() {
         start(this,startForResult)
     }
     //endregion
-    //region playTrimmed video
-    private fun startMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putStringArrayListExtra("TRIMMED_VIDEO_PATHS", ArrayList(trimmedVideoPaths))
-        startActivity(intent)
-        finish()
-    }
-    //endregion
-
+    //region saveTrimmedVideoPath
+    /**
+     * Stores all paths to trimmed videos in a list.
+     */
     private fun saveTrimmedVideoPath(videoPath: String) {
         trimmedVideoPaths.add(videoPath)
     }
-
+    //endregion
+    //region onBackPressed
+    /**
+     * Checks if the back button on users phone has been pressen,
+     * if so the user will be transfered to MainAcitivty while simultaneously passing the list of trimmed video paths.
+     */
     override fun onBackPressed() {
         super.onBackPressed()
-        startMainActivity()
+        DataHolder.videoPaths = ArrayList(trimmedVideoPaths)
     }
+    //endregion
 }

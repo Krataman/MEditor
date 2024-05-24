@@ -43,12 +43,13 @@
             android:textStyle="bold"
             app:icon="@drawable/baseline_camera_24"
             app:iconGravity="textEnd"
-            app:iconSize="20dp"
+            app:iconSize="30dp"
             app:iconTint="@color/white"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="20sp">
 
         </com.google.android.material.button.MaterialButton>
 
@@ -62,8 +63,10 @@
             android:textStyle="bold"
             app:icon="@drawable/baseline_add_photo_alternate_24"
             app:iconGravity="textEnd"
-            app:iconSize="20dp"
-            app:iconTint="@color/white">
+            app:iconSize="30dp"
+            app:iconTint="@color/white"
+            android:textSize="20sp">
+            y
 
         </com.google.android.material.button.MaterialButton>
 
