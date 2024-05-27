@@ -20,7 +20,6 @@ class VideoAdapter(
 
     private val thumbnailWidth: Int
     init {
-
         val displayMetrics: DisplayMetrics = context.resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
         thumbnailWidth = screenWidth / 4

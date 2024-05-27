@@ -13,6 +13,7 @@ import com.android.pgo.R
 class GalleryActivity : AppCompatActivity() {
     private lateinit var videoAdapter: VideoAdapter
     private val videoPaths = ArrayList<String>()
+    private var b = true
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +31,11 @@ class GalleryActivity : AppCompatActivity() {
             startActivity(intent)
         }
         recyclerView.adapter = videoAdapter
+
+        if(DataHolder.loadVids){
+            DataHolder.onLoadAddVideoPaths()
+            DataHolder.loadVids = false
+        }
 
         //pridani cest videii do SINGLETON tridy Data Holder
         DataHolder.videoPaths?.let {

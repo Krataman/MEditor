@@ -171,7 +171,12 @@ class SelectOptionActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-            DataHolder.videoPaths = ArrayList(trimmedVideoPaths)
+        DataHolder.videoPaths.addAll(trimmedVideoPaths)
+
+        trimmedVideoPaths.clear() //smaze cely list aby se videa v galerii neduplikovala ,
+        // jelikoz jsem predelal aby se videa pridavali pomoci .addAll() misto toho aby list nahrazovali
+
+        finish()
 
     }
     //endregion
