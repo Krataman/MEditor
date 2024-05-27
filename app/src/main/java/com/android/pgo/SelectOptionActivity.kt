@@ -14,16 +14,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 
@@ -35,7 +31,6 @@ class SelectOptionActivity : AppCompatActivity() {
         private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
         private lateinit var videoUri: Uri
         private val trimmedVideoPaths = mutableListOf<String>()
-
     }
 
     //region value startForResult
@@ -61,7 +56,6 @@ class SelectOptionActivity : AppCompatActivity() {
         initButton()
     }
     //endregion
-
     //region initialize button
     /**
      * Method that initializes the buttons to take a video
@@ -177,7 +171,8 @@ class SelectOptionActivity : AppCompatActivity() {
      */
     override fun onBackPressed() {
         super.onBackPressed()
-        DataHolder.videoPaths = ArrayList(trimmedVideoPaths)
+            DataHolder.videoPaths = ArrayList(trimmedVideoPaths)
+
     }
     //endregion
 }

@@ -22,16 +22,16 @@ class GalleryActivity : AppCompatActivity() {
 
         // Inicializace RecyclerView a Adapter
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = GridLayoutManager(this, 3)
+        recyclerView.layoutManager = GridLayoutManager(this, 4)
 
-        videoAdapter = VideoAdapter(videoPaths) { videoPath ->
+        videoAdapter = VideoAdapter(this, videoPaths) { videoPath ->
             val intent = Intent(this, FullScreenVideoActivity::class.java)
             intent.putExtra("VIDEO_PATH", videoPath)
             startActivity(intent)
         }
         recyclerView.adapter = videoAdapter
 
-        //pridani cest do SINGLETON tridy Data Holder
+        //pridani cest videii do SINGLETON tridy Data Holder
         DataHolder.videoPaths?.let {
             videoPaths.addAll(it)
             videoAdapter.notifyDataSetChanged()

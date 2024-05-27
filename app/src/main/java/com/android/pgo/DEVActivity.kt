@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
@@ -23,7 +24,27 @@ class DEVActivity : AppCompatActivity() {
         button.setOnClickListener(View.OnClickListener {
             deleteFilesInTrimmedVideoFolder()
         })
+
+        val button2:Button = findViewById(R.id.showFilePaths)
+        button2.setOnClickListener(View.OnClickListener {
+            displayPaths()
+        })
     }
+
+    private fun displayPaths() {
+        val text:TextView = findViewById(R.id.pathsText)
+
+        val directoryPath = "/storage/emulated/0/Android/data/com.android.pgo/files/TrimmedVideo/"
+        val directory = File(directoryPath)
+        val files = directory.listFiles()
+
+        if (files != null) {
+            val s = files.size
+            text.text = "$s"
+        }
+    }
+
+    //region delete files
     private fun deleteFilesInTrimmedVideoFolder() {
         val directoryPath = "/storage/emulated/0/Android/data/com.android.pgo/files/TrimmedVideo/"
         val directory = File(directoryPath)
@@ -45,4 +66,5 @@ class DEVActivity : AppCompatActivity() {
             Log.e(TAG, "Directory does not exist or is not a directory.")
         }
     }
+    //endregion
 }

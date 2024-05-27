@@ -5,21 +5,44 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DEVActivity">
+    tools:context=".DEVActivity"
+    android:background="@color/white">
 
     <Button
         android:id="@+id/deleteDATA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="!DELETE STORED!"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background_fade"
+        app:srcCompat="@drawable/background_fade" />
+
+    <Button
+        android:id="@+id/showFilePaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
+        android:clickable="true"
+        android:text="!PATHS!"
         android:textStyle="bold"
-        android:text="!DELETE STORED VIDEOS!"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteDATA"
+        app:srcCompat="@drawable/background_fade" />
+
+    <TextView
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/pathsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/showFilePaths"
+        android:textColor="@color/black"
+        android:text="PATHS">
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

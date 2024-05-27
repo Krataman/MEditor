@@ -6,8 +6,6 @@ import android.widget.MediaController
 import android.widget.VideoView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.pgo.R
 
 class FullScreenVideoActivity : AppCompatActivity() {
@@ -25,11 +23,10 @@ class FullScreenVideoActivity : AppCompatActivity() {
         val uri = Uri.parse(videoPath)
 
         videoView.setVideoURI(uri)
-        /*
+
         val mediaController = MediaController(this)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)
-        */
 
         videoView.start()
     }
