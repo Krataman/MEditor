@@ -23,7 +23,7 @@ The following libraries were used to develop this application:
   ```gradle
   implementation "com.github.yalantis:ucrop:2.2.6"
 
-- [**aGlide**](https://github.com/bumptech/glide)
+- [**Glide**](https://github.com/bumptech/glide)
   ```gradle
   implementation "com.github.bumptech.glide:glide:4.11.0""
 
