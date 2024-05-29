@@ -41,13 +41,14 @@ class MediaAdapter(
         layoutParams.height = thumbnailWidth
         holder.thumbnail.layoutParams = layoutParams
 
-        // Rozhodnutí, zda se jedná o video nebo obrázek
         if (mediaPath.endsWith(".mp4")) {
             val thumbnail: Bitmap? = ThumbnailUtils.createVideoThumbnail(mediaPath, MediaStore.Images.Thumbnails.MINI_KIND)
             holder.thumbnail.setImageBitmap(thumbnail)
         } else {
-            // Pokud je cesta k obrázku, načtěte obrázek pomocí knihovny pro manipulaci s obrázky
-            Glide.with(context).load(mediaPath).into(holder.thumbnail)
+
+            Glide.with(context)
+                .load(mediaPath)
+                .into(holder.thumbnail)
         }
 
         holder.itemView.setOnClickListener { onItemClick(mediaPath) }

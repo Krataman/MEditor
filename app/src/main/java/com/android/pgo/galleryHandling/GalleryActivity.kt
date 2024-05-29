@@ -13,7 +13,6 @@ import com.android.pgo.R
 class GalleryActivity : AppCompatActivity() {
     private lateinit var videoAdapter: MediaAdapter
     private val mediaPaths = ArrayList<String>()
-    private var b = true
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,14 +1,11 @@
 package com.android.pgo.galleryHandling
 
-import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.VideoView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.pgo.R
+import com.bumptech.glide.Glide
 
 class FullScreenImageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,10 +16,11 @@ class FullScreenImageActivity : AppCompatActivity() {
     }
 
     private fun displayImage(){
-        val imageView:ImageView = findViewById(R.id.imageView)
+        val imageView: ImageView = findViewById(R.id.imageView)
         val imagePath = intent.getStringExtra("MEDIA_PATH")
-        val uri = Uri.parse(imagePath)
 
-        imageView.setImageURI(uri)
+        Glide.with(this)
+            .load(imagePath)
+            .into(imageView)
     }
 }
