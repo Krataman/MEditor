@@ -27,6 +27,5 @@ The following libraries were used to develop this application:
   ```gradle
   implementation "com.github.bumptech.glide:glide:4.11.0""
 
-
 ## Release
 Current version: [**Version 2.0.0**](https://github.com/Krataman/MEditor/releases/tag/v2.0.0)
