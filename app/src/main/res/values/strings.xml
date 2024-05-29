@@ -9,4 +9,6 @@
     <string name="view_gallery">View gallery</string>
     <string name="from_gallery">From gallery</string>
     <string name="take_video">Take video</string>
+    <string name="crop_images">Crop images</string>
+    <string name="take_image">Take photo</string>
 </resources>

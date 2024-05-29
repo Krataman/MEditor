@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/background_fade"
+        android:background="@drawable/background_fade_blue"
         android:theme="@style/ToolbarTheme">
 
     </androidx.appcompat.widget.Toolbar>

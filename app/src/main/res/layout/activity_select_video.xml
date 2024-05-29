@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectOptionActivity"
+    tools:context=".SelectVideoTypeActivity"
     android:background="@color/white">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/background_fade"
+        android:background="@drawable/background_fade_blue"
         android:theme="@style/ToolbarTheme">
 
     </androidx.appcompat.widget.Toolbar>
@@ -66,10 +66,8 @@
             app:iconSize="30dp"
             app:iconTint="@color/white"
             android:textSize="20sp">
-            y
 
         </com.google.android.material.button.MaterialButton>
-
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

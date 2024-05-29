@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat
 import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 
-class SelectOptionActivity : AppCompatActivity() {
+class SelectVideoTypeActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_VIDEO_CAPTURE = 1 //static value
         private const val REQUEST_VIDEO_PERMISSIONS = 2 //static value
@@ -31,6 +31,7 @@ class SelectOptionActivity : AppCompatActivity() {
         private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // list of permission that the app requires to function properly
         private lateinit var videoUri: Uri
         private val trimmedVideoPaths = mutableListOf<String>()
+
     }
 
     //region value startForResult
@@ -41,6 +42,7 @@ class SelectOptionActivity : AppCompatActivity() {
             val uri: Uri = Uri.parse(TrimVideo.getTrimmedVideoPath(result.data))
             Log.d(ContentValues.TAG, "Trimmed video path:: " + uri)
             saveTrimmedVideoPath(uri.toString()) // ulozi lokaci trimnuteho videa to listu Stringu
+
             Log.d(TAG, "$uri")
 
         }else
@@ -51,8 +53,7 @@ class SelectOptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_select_option)
-
+        setContentView(R.layout.activity_select_video)
         initButton()
     }
     //endregion
@@ -67,7 +68,7 @@ class SelectOptionActivity : AppCompatActivity() {
             if (hasPermissions(APPLICATION_PERMISSIONS)) {
                 takeVideoIntent()
             } else {
-                requestVideoPermissions()
+                requestCameraPermissions()
             }
         })
         //endregion
@@ -85,7 +86,7 @@ class SelectOptionActivity : AppCompatActivity() {
     /**
      * Method that requests the video permissions from the user
      */
-    private fun requestVideoPermissions() {
+    private fun requestCameraPermissions() {
         ActivityCompat.requestPermissions(this, APPLICATION_PERMISSIONS, REQUEST_VIDEO_PERMISSIONS)
 
     }
@@ -144,12 +145,12 @@ class SelectOptionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             videoUri = data?.data!!
-            openTrimActivity()
+            startTrim()
         }
     }
     //endregion
     //region openTrimAcitivity
-    private fun openTrimActivity(){
+    private fun startTrim(){
         TrimVideo.activity(videoUri.toString()).
         setHideSeekBar(false).
         setAccurateCut(false).

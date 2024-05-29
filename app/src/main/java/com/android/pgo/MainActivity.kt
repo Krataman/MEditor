@@ -22,11 +22,12 @@ class MainActivity : AppCompatActivity() {
     private fun initButtons(){
         val button1 = findViewById<View>(R.id.viewGalleryButton)
         val button2 = findViewById<View>(R.id.trimVideoButton)
+        val button3 = findViewById<View>(R.id.cropImagesButton)
         val dev = findViewById<View>(R.id.dev)
 
         //region button2
         button2.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, SelectOptionActivity::class.java)
+            val intent = Intent(this, SelectVideoTypeActivity::class.java)
             startActivity(intent)
         })
         //endregion
@@ -36,6 +37,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, GalleryActivity::class.java)
             intent.putStringArrayListExtra("TRIMMED_VIDEO_PATHS",
                 i.getStringArrayListExtra("TRIMMED_VIDEO_PATHS")?.let { it1 -> ArrayList(it1) })
+            startActivity(intent)
+        })
+        //endregion
+        //region button3
+        button3.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, SelectImageTypeActivity::class.java)
             startActivity(intent)
         })
         //endregion
