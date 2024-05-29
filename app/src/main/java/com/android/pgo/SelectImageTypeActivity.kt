@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.icu.text.SimpleDateFormat
 
 import android.net.Uri
@@ -22,7 +24,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.yalantis.ucrop.UCrop
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.IOException
+import java.io.InputStream
 import java.util.Date
 import java.util.Locale
 
@@ -33,6 +37,7 @@ class SelectImageTypeActivity : AppCompatActivity() {
         private val TAKE_PHOTO_REQUEST = 2
         private val APPLICATION_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private lateinit var currentPhotoPath: String
+        private val croppedImagesPaths = mutableListOf<String>()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -125,18 +130,24 @@ class SelectImageTypeActivity : AppCompatActivity() {
             when (requestCode) {
                 PICK_IMAGE_REQUEST -> {
                     val sourceUri = data?.data ?: return
-                    val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image.jpg"))
+                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                    val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                    val destinationUri = Uri.fromFile(File(storageDir, "cropped_image_$timeStamp.jpg"))
                     openCropActivity(sourceUri, destinationUri)
+                    saveImagePath(destinationUri.toString())
                 }
                 TAKE_PHOTO_REQUEST -> {
                     val sourceUri = Uri.fromFile(File(currentPhotoPath))
-                    val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image.jpg"))
+                    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+                    val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+                    val destinationUri = Uri.fromFile(File(storageDir, "cropped_image_$timeStamp.jpg"))
                     openCropActivity(sourceUri, destinationUri)
+                    saveImagePath(destinationUri.toString())
+
                 }
                 UCrop.REQUEST_CROP -> {
-                    val resultUri = UCrop.getOutput(data!!)
-                    // Zde můžeš zobrazit nebo uložit oříznutý obrázek
-
+                    val uri = Uri.parse(UCrop.getOutput(data!!).toString())
+                    Log.d("!!! C !!!", "PATH: $uri")
                 }
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -161,4 +172,18 @@ class SelectImageTypeActivity : AppCompatActivity() {
         }
     }
     //endregion
+    //region saveImagePaths
+    private fun saveImagePath(imagePath: String) {
+        croppedImagesPaths.add(imagePath)
+    }
+    //endregion
+    //region onBackPressed
+    override fun onBackPressed() {
+        super.onBackPressed()
+        DataHolder.imagePaths.addAll(croppedImagesPaths)
+        croppedImagesPaths.clear()
+        finish()
+    }
+    //endregion
+
 }

@@ -5,6 +5,7 @@ import java.io.File
 class DataHolder() { //SINGLETON CLASS
     companion object {
         var videoPaths: ArrayList<String> = arrayListOf()
+        var imagePaths: ArrayList<String> = arrayListOf()
 
         var loadVids = true // boolean ktery ve tride Gallery zajistuje,
                             // aby se videa do galerie nacetly POUZE 1x, tim ze je prommena v Singletonu tak zustava po celou dobu kdyz program bezi

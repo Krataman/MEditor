@@ -9,38 +9,62 @@
     android:background="@color/white">
 
     <Button
-        android:id="@+id/deleteDATA"
+        android:id="@+id/deleteVIDS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
         android:clickable="true"
-        android:text="!DELETE STORED!"
+        android:text="!DELETE STORED VIDS!"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background_fade_blue" />
-
     <Button
-        android:id="@+id/showFilePaths"
+        android:id="@+id/deleteIMAGES"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/red"
         android:clickable="true"
-        android:text="!PATHS!"
+        android:text="!DELETE STORED IMAGES!"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteDATA"
+        app:layout_constraintTop_toBottomOf="@+id/deleteVIDS"
+        app:srcCompat="@drawable/background_fade_blue" />
+
+    <Button
+        android:id="@+id/showVidPaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:clickable="true"
+        android:text="!VID PATHS!"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteIMAGES"
+        app:srcCompat="@drawable/background_fade_blue" />
+    <Button
+        android:id="@+id/showImgPaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:clickable="true"
+        android:text="!IMG PATHS!"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showVidPaths"
         app:srcCompat="@drawable/background_fade_blue" />
 
     <TextView
         android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/pathsText"
+        android:id="@+id/numberOfPaths"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/showFilePaths"
+        app:layout_constraintTop_toBottomOf="@+id/showImgPaths"
         android:textColor="@color/black"
         android:text="PATHS">
     </TextView>
