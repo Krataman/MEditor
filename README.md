@@ -1,20 +1,28 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Simple Video and Image Editor
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+## Overview
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+This project is a simple video and image editor application for Android. The application allows users to edit videos and images with ease. It features a gallery where users can view their edited media. Users can choose videos and images from the gallery or capture them directly using their device's camera.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Features
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+- **Video Editing:** Trim and edit videos with a user-friendly interface.
+- **Image Editing:** Crop and adjust images with intuitive tools.
+- **Gallery:** View and manage edited media in the integrated gallery.
+- **Media Selection:** Choose media from the gallery or capture new media directly from the camera.
+
+## Libraries Used
+
+The following libraries were used to develop this application:
+
+- [**Android Video Trimmer**](https://github.com/a914-gowtham/android-video-trimmer)
+  ```gradle
+  implementation "com.github.a914-gowtham:android-video-trimmer:1.6.1"
+
+- [**uCrop**](https://github.com/Yalantis/uCrop)
+  ```gradle
+  implementation "com.github.yalantis:ucrop:2.2.6"
+
+- [**aGlide**](https://github.com/bumptech/glide)
+  ```gradle
+  implementation "com.github.bumptech.glide:glide:4.11.0""
