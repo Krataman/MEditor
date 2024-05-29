@@ -19,7 +19,7 @@ class FullScreenVideoActivity : AppCompatActivity() {
 
     private fun displayVideo(){
         val videoView = findViewById<VideoView>(R.id.videoView)
-        val videoPath = intent.getStringExtra("VIDEO_PATH")
+        val videoPath = intent.getStringExtra("MEDIA_PATH")
         val uri = Uri.parse(videoPath)
 
         videoView.setVideoURI(uri) //nastaveni lokace videa

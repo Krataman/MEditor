@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.android.video.trimmer)
     implementation(libs.ucrop)
+    implementation(libs.glide)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

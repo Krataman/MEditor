@@ -11,12 +11,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.pgo.R
+import com.bumptech.glide.Glide
 
-class VideoAdapter(
+class MediaAdapter(
     private val context: Context, // prijima kontext tridy GalleryAcitivity pro pozdejsi ziskani paremtru display uzivatele
-    private val videoPaths: List<String>,
-    private val onVideoClick: (String) -> Unit // lambda funkce, volana pri kliku na video | UNIT -> nic nevraci / void v java || String je cesta k videu
-):RecyclerView.Adapter<VideoAdapter.ViewHolder>() {
+    private val mediaPaths: List<String>,
+    private val onItemClick: (String) -> Unit // lambda funkce, volana pri kliku na video | UNIT -> nic nevraci / void v java || String je cesta k videu
+):RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     private val thumbnailWidth: Int
     init {
@@ -27,31 +28,36 @@ class VideoAdapter(
     //region onCreateViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.video_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.gallery_thumbnail, parent, false)
         return ViewHolder(view)
     }
     //endregion
     //region onBindViewHolder
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        //region dynamicke nastaveni sirky a vysky nahledu
-        val layoutParams = holder.videoThumbnail.layoutParams
+        val mediaPath = mediaPaths[position]
+        val layoutParams = holder.thumbnail.layoutParams
         layoutParams.width = thumbnailWidth
         layoutParams.height = thumbnailWidth
-        holder.videoThumbnail.layoutParams = layoutParams
-        //endregion
+        holder.thumbnail.layoutParams = layoutParams
 
-        val videoPath = videoPaths[position]
-        holder.itemView.setOnClickListener { onVideoClick(videoPath) }
-        val thumbnail: Bitmap? = ThumbnailUtils.createVideoThumbnail(videoPath, MediaStore.Images.Thumbnails.MINI_KIND)
-        holder.videoThumbnail.setImageBitmap(thumbnail)
+        // Rozhodnutí, zda se jedná o video nebo obrázek
+        if (mediaPath.endsWith(".mp4")) {
+            val thumbnail: Bitmap? = ThumbnailUtils.createVideoThumbnail(mediaPath, MediaStore.Images.Thumbnails.MINI_KIND)
+            holder.thumbnail.setImageBitmap(thumbnail)
+        } else {
+            // Pokud je cesta k obrázku, načtěte obrázek pomocí knihovny pro manipulaci s obrázky
+            Glide.with(context).load(mediaPath).into(holder.thumbnail)
+        }
+
+        holder.itemView.setOnClickListener { onItemClick(mediaPath) }
     }
     //endregion
     override fun getItemCount(): Int {
-        return videoPaths.size
+        return mediaPaths.size
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val videoThumbnail: ImageView = view.findViewById(R.id.videoThumbnail)
+        val thumbnail: ImageView = view.findViewById(R.id.thumbnail)
     }
 }

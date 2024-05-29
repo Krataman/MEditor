@@ -180,7 +180,7 @@ class SelectImageTypeActivity : AppCompatActivity() {
     //region onBackPressed
     override fun onBackPressed() {
         super.onBackPressed()
-        DataHolder.imagePaths.addAll(croppedImagesPaths)
+        DataHolder.mediaPaths.addAll(croppedImagesPaths)
         croppedImagesPaths.clear()
         finish()
     }

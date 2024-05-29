@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- User permissions -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-
 
     <application
         android:allowBackup="true"
@@ -18,15 +17,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PGO"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".galleryHandling.FullScreenImageActivity"
+            android:exported="false" />
         <activity
             android:name=".SelectImageTypeActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".galleryHandling.FullScreenVideoActivity"
             android:exported="false"
-            android:parentActivityName=".galleryHandling.GalleryActivity"/>
+            android:parentActivityName=".galleryHandling.GalleryActivity" />
         <activity
             android:name=".DEVActivity"
             android:exported="false"
@@ -43,7 +45,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,12 +61,11 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-        </provider>
-
-        <!-- Přidání UCropActivity -->
-        <activity android:name="com.yalantis.ucrop.UCropActivity"
+        </provider> <!-- Přidání UCropActivity -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>
