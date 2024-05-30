@@ -29,3 +29,7 @@ The following libraries were used to develop this application:
 
 ## Release
 Current version: [**Version 2.0.0**](https://github.com/Krataman/MEditor/releases/download/v2.0.0/MEditor.apk)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
