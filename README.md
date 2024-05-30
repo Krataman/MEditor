@@ -32,4 +32,4 @@ Current version: [**Version 2.0.0**](https://github.com/Krataman/MEditor/release
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/Krataman/MEditor/blob/main/LICENSE) file for details.
