@@ -80,10 +80,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="@color/red"
+            android:backgroundTint="@color/black_tint"
             android:textStyle="bold"
-            android:text="DEV"
-            android:id="@+id/dev">
+            android:text="@string/settings"
+            android:id="@+id/settings"
+            app:iconTint="@color/white"
+            android:textSize="20sp"
+            app:icon="@drawable/baseline_phonelink_setup_24"
+            app:iconGravity="textEnd"
+            app:iconSize="30dp">
 
         </com.google.android.material.button.MaterialButton>
 

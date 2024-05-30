@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val button1 = findViewById<View>(R.id.viewGalleryButton)
         val button2 = findViewById<View>(R.id.trimVideoButton)
         val button3 = findViewById<View>(R.id.cropImagesButton)
-        val dev = findViewById<View>(R.id.dev)
+        val dev = findViewById<View>(R.id.settings)
 
         //region button2
         button2.setOnClickListener(View.OnClickListener {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         //endregion
         //region dev
         dev.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, DEVActivity::class.java)
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         })
         //endregion
