@@ -1,15 +1,16 @@
 <resources>
     <string name="app_name">MEditor</string>  <!--- Media Editor -->
-    <string name="trim_video">Trim Video</string>
+    <string name="trim_video">Trim Videos</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
 
     <string name="previous">Previous</string>
-    <string name="view_gallery">View gallery</string>
-    <string name="from_gallery">From gallery</string>
+    <string name="view_gallery">View Gallery</string>
+    <string name="from_gallery">From Gallery</string>
     <string name="take_video">Take video</string>
-    <string name="crop_images">Crop images</string>
-    <string name="take_image">Take photo</string>
+    <string name="crop_images">Crop Images</string>
+    <string name="take_image">Take Photo</string>
+    <string name="settings">Settings</string>
 </resources>
